@@ -22,5 +22,33 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Prose styles for blog content */
+.prose {
+  --tw-prose-body: #3f3f46;
+  --tw-prose-headings: #18181b;
+  --tw-prose-links: #16a34a;
+  --tw-prose-bold: #18181b;
+  --tw-prose-code: #16a34a;
+  --tw-prose-pre-bg: #09090b;
+}
+
+.prose-invert {
+  --tw-prose-body: #a1a1aa;
+  --tw-prose-headings: #fafafa;
+  --tw-prose-links: #4ade80;
+  --tw-prose-bold: #fafafa;
+  --tw-prose-code: #4ade80;
+  --tw-prose-pre-bg: #18181b;
+}
+
+.dark .prose {
+  --tw-prose-body: #a1a1aa;
+  --tw-prose-headings: #fafafa;
+  --tw-prose-links: #4ade80;
+  --tw-prose-bold: #fafafa;
+  --tw-prose-code: #4ade80;
+  --tw-prose-pre-bg: #18181b;
 }
