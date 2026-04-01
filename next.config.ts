@@ -1,9 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  turbopack: {
-    root: "/Users/alan/learn/Nextjs-Blog-Demo",
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
