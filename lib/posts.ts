@@ -133,54 +133,34 @@ Both approaches respect cache headers, but ISR gives you more control with:
   },
 ];
 
-export async function getAllPosts(): Promise<Post[]> {
-  // Simulate network delay to demonstrate ISR behavior
-  await new Promise((resolve) => setTimeout(resolve, 100));
-
-  // Try to read dynamically added posts
+async function readDynamicPosts(): Promise<Post[]> {
   try {
     const fs = await import("fs");
     const path = await import("path");
     const dataFilePath = path.join(process.cwd(), "data", "posts.json");
     const fileContent = await fs.promises.readFile(dataFilePath, "utf-8");
-    const dynamicPosts: Post[] = JSON.parse(fileContent);
-    return [...dynamicPosts, ...posts];
+    return JSON.parse(fileContent);
   } catch {
-    return posts;
+    return [];
   }
+}
+
+export async function getAllPosts(): Promise<Post[]> {
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const dynamicPosts = await readDynamicPosts();
+  return [...dynamicPosts, ...posts];
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   await new Promise((resolve) => setTimeout(resolve, 100));
-
-  // Check dynamic posts first
-  try {
-    const fs = await import("fs");
-    const path = await import("path");
-    const dataFilePath = path.join(process.cwd(), "data", "posts.json");
-    const fileContent = await fs.promises.readFile(dataFilePath, "utf-8");
-    const dynamicPosts: Post[] = JSON.parse(fileContent);
-    const found = dynamicPosts.find((post) => post.slug === slug);
-    if (found) return found;
-  } catch {
-    // Continue to static posts
-  }
-
+  const dynamicPosts = await readDynamicPosts();
+  const found = dynamicPosts.find((post) => post.slug === slug);
+  if (found) return found;
   return posts.find((post) => post.slug === slug) || null;
 }
 
 export async function getAllSlugs(): Promise<string[]> {
   await new Promise((resolve) => setTimeout(resolve, 100));
-
-  // Include dynamic posts
-  try {
-    const fs = await import("fs");
-    const path = await import("path");
-    const dataFilePath = path.join(process.cwd(), "data", "posts.json");
-    const fileContent = await fs.promises.readFile(dataFilePath, "utf-8");
-    const dynamicPosts: Post[] = JSON.parse(fileContent);
-    return [...dynamicPosts.map((p) => p.slug), ...posts.map((p) => p.slug)];
-  } catch {
-    return posts.map((post) => post.slug);
-  }
+  const dynamicPosts = await readDynamicPosts();
+  return [...dynamicPosts.map((p) => p.slug), ...posts.map((p) => p.slug)];
 }

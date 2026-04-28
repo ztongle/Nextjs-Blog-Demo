@@ -6,9 +6,13 @@ import { revalidatePath } from "next/cache";
 const dataFilePath = path.join(process.cwd(), "data", "posts.json");
 
 export async function GET() {
-  const fileContent = await fs.readFile(dataFilePath, "utf-8");
-  const posts = JSON.parse(fileContent);
-  return NextResponse.json(posts);
+  try {
+    const fileContent = await fs.readFile(dataFilePath, "utf-8");
+    const posts = JSON.parse(fileContent);
+    return NextResponse.json(posts);
+  } catch {
+    return NextResponse.json([], { status: 200 });
+  }
 }
 
 export async function POST(request: Request) {

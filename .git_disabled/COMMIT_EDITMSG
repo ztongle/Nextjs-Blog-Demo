@@ -1,0 +1,22 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	modified:   CLAUDE.md
+#	new file:   __tests__/api/posts.integration.test.ts
+#	new file:   __tests__/app/page.test.tsx
+#	new file:   __tests__/app/posts/[slug]/page.test.tsx
+#	new file:   __tests__/lib/posts.test.ts
+#	modified:   app/page.tsx
+#	new file:   components/Article.tsx
+#	new file:   e2e/blog.spec.ts
+#	new file:   jest.config.js
+#	new file:   jest.setup.js
+#	modified:   package-lock.json
+#	modified:   package.json
+#	new file:   playwright.config.ts
+#
