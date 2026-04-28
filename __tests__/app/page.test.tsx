@@ -2,7 +2,7 @@
  * Unit Tests for Home Page
  */
 
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import HomePage from "@/app/page";
 import { getAllPosts } from "@/lib/posts";
 

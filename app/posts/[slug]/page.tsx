@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllSlugs } from "@/lib/posts";
+import Comments from "@/components/Comments";
 
 // SSR: Dynamic rendering - no cache, fresh on every request
 // This is the default when not using revalidate or force-dynamic
@@ -164,6 +165,9 @@ export default async function PostPage({ params }: PageProps) {
             })}
           </div>
         </article>
+
+        {/* Comments Section */}
+        <Comments postSlug={post.slug} />
 
         {/* Refresh hint for demonstrating SSR */}
         <div className="mt-12 rounded-lg border border-zinc-200 bg-zinc-100 p-4 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
