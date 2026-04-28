@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "slug": "ssr-learning",
+    "title": "SSR Learning",
+    "excerpt": "Learn the basic knowledge of SSR",
+    "content": "there are a lot of things need to learn",
+    "publishedAt": "2026-04-28",
+    "author": "Alan",
+    "tags": [
+      "Next.js"
+    ]
+  }
+]
