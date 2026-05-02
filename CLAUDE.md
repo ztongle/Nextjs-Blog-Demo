@@ -11,7 +11,7 @@ Next.js Blog Demo project demonstrating Server-Side Rendering (SSR) and Incremen
 ## Commands
 
 ```bash
-npm run dev          # Start development server
+./dev.sh             # Start development server
 npm run build        # Production build
 npm run start        # Start production server
 npm run lint         # Run ESLint
@@ -23,6 +23,7 @@ npm run test:e2e:ui  # Run Playwright with UI mode
 ```
 
 To run a single test file, use `-- <file>` or `--testPathPattern`:
+
 ```bash
 npm test -- --testPathPattern=MyTest
 ```

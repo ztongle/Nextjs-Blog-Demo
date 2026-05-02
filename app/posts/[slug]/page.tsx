@@ -74,7 +74,7 @@ export default async function PostPage({ params }: PageProps) {
             </div>
           </header>
 
-          <div className="prose prose-zinc dark:prose-invert max-w-none">
+          <div className="max-w-none">
             {paragraphs.map((para, i) => {
               // Check if it's a heading
               if (para.startsWith("## ")) {
@@ -111,15 +111,17 @@ export default async function PostPage({ params }: PageProps) {
               // Check if it's a table
               if (para.includes("|")) {
                 return (
-                  <div
-                    key={i}
-                    className="mt-4 overflow-x-auto"
-                  >
+                  <div key={i} className="mt-4 overflow-x-auto">
                     <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-700">
                       <tbody>
                         {para.split("\n").map((row, j) => {
-                          if (row.trim().startsWith("|") && row.trim().endsWith("|")) {
-                            const cells = row.split("|").filter(c => c.trim());
+                          if (
+                            row.trim().startsWith("|") &&
+                            row.trim().endsWith("|")
+                          ) {
+                            const cells = row
+                              .split("|")
+                              .filter((c) => c.trim());
                             return (
                               <tr key={j}>
                                 {cells.map((cell, k) => (
@@ -142,7 +144,7 @@ export default async function PostPage({ params }: PageProps) {
               }
               // Check if it's a list item
               if (para.startsWith("- ") || para.match(/^\d+\. /)) {
-                const items = para.split("\n").filter(line => line.trim());
+                const items = para.split("\n").filter((line) => line.trim());
                 const isOrdered = para.match(/^\d+\. /);
                 const ListTag = isOrdered ? "ol" : "ul";
                 return (
@@ -151,7 +153,9 @@ export default async function PostPage({ params }: PageProps) {
                     className="mt-4 list-inside list-disc space-y-1 text-zinc-700 dark:text-zinc-300"
                   >
                     {items.map((item, j) => (
-                      <li key={j}>{item.replace(/^[-*\d]+\. /, "").replace(/\*\*/g, "")}</li>
+                      <li key={j}>
+                        {item.replace(/^[-*\d]+\. /, "").replace(/\*\*/g, "")}
+                      </li>
                     ))}
                   </ListTag>
                 );
